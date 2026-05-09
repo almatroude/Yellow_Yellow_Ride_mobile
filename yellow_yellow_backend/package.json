@@ -1,0 +1,22 @@
+{
+  "name": "yellow_yellow_backend",
+  "version": "1.0.0",
+  "description": "Backend for Yellow Yellow tricycle app",
+  "main": "src/index.js",
+  "dependencies": {
+    "@prisma/client": "^5.15.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "pg": "^8.11.5"
+  },
+  "prisma": {
+    "binaryTargets": [
+      "native",
+      "darwin-arm64"
+    ]
+  },
+  "devDependencies": {
+    "prisma": "^5.15.0"
+  }
+}

@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id          String @id @default(uuid())
+  phoneNumber String @unique
+  userType    String
+  latitude    Float?
+  longitude   Float?
+
+  passengerTrips Trip[] @relation("PassengerTrips")
+  driverTrips    Trip[] @relation("DriverTrips")
+
+  // Update this line to include @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model Trip {
+  id             String  @id @default(uuid())
+  passengerId    String
+  passenger      User    @relation("PassengerTrips", fields: [passengerId], references: [id])
+  driverId       String?
+  driver         User?   @relation("DriverTrips", fields: [driverId], references: [id])
+  pickupLocation String
+  // ... other trip fields
+}
